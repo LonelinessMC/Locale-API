@@ -12,6 +12,9 @@ package de.unpixelt.locale;
 import com.google.common.base.Preconditions;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
+
+import de.unpixelt.locale.Translate.PotionSort;
+
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
@@ -91,7 +94,11 @@ public final class Translate extends JavaPlugin {
      */
     @NotNull
     public static Locale getLocale(@NotNull Player p) {
-        return Locale.valueOf(p.getLocale());
+        Locale toReturn = Locale.it_it; //default value
+        try{
+            toReturn = Locale.valueOf(p.getLocale());
+        } catch (IllegalArgumentException ex){}
+        return toReturn;
     }
 
     /**

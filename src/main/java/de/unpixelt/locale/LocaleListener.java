@@ -47,7 +47,10 @@ class LocaleListener implements Listener {
     @EventHandler
     private void onPlayerLocaleChange(@NotNull PlayerLocaleChangeEvent e) {
         Player p = e.getPlayer();
-        Locale newLocale = Locale.valueOf(e.getLocale());
+        Locale newLocale = Locale.it_it; //set a default value
+        try{
+            newLocale = Locale.valueOf(e.getLocale());
+        } catch (IllegalArgumentException ex){}
         Locale oldLocale = playerLocale.put(p.getUniqueId(), newLocale);
 
         counter.increment(newLocale);
